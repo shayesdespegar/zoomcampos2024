@@ -14,15 +14,14 @@ project_id = 'my-de-zoomcamp-project'
 table_name = 'green_taxi'
 
 root_path = f'{bucket_name}/{table_name}'
-table = pa.Table.from_pandas(data)
 
 @data_exporter
 def export_data(data, *args, **kwargs):
 
-    print('Paso 2')
     gcs = pa.fs.GcsFileSystem()
 
-    print('Paso 3')
+    table = pa.Table.from_pandas(data)
+
     pq.write_to_dataset(
         table,
         root_path=root_path,

@@ -20,20 +20,20 @@ blocks:
   configuration: {}
   downstream_blocks:
   - taxi_data_to_postgres
-  - taxi_data_to_gcp
+  - export_to_bucket
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: transform_taxi_data
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - download_taxi_data
   uuid: transform_taxi_data
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks: []
@@ -41,15 +41,15 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: taxi_data_to_gcp
+  name: export_to_bucket
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
   - transform_taxi_data
-  uuid: taxi_data_to_gcp
-- all_upstream_blocks_executed: false
+  uuid: export_to_bucket
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     data_provider: postgres
@@ -95,7 +95,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-02-06 22:41:03'
+updated_at: '2024-02-08 17:13:43'
 uuid: green_taxi_etl
 variables_dir: /home/src/mage_data/magic-zoomcamp
 widgets: []
