@@ -27,6 +27,11 @@ def upload_to_gcs(bucket, object_name, local_file):
     # storage.blob._MAX_MULTIPART_SIZE = 5 * 1024 * 1024  # 5 MB
     # storage.blob._DEFAULT_CHUNKSIZE = 5 * 1024 * 1024  # 5 MB
 
+    df = pd.read_parquet(local_file)
+
+    df = df.astype({"PUlocationID": "Int64", "DOlocationID": "Int64", "SR_Flag": "Int64"})
+    df.to_parquet(local_file, engine='pyarrow')
+
     client = storage.Client()
     bucket = client.bucket(bucket)
     blob = bucket.blob(object_name)
@@ -56,5 +61,9 @@ def web_to_gcs(year, service):
         print(f"GCS: {service}/{file_name}")
 
 
-web_to_gcs('2022', 'green')
+colors = ['fhv']
+
+for color in colors:
+    for year in range(2019, 2021):
+        web_to_gcs(str(year), color)
 

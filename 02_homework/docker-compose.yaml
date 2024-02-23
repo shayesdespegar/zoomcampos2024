@@ -20,7 +20,7 @@ services:
       - 6789:6789
     volumes:
       - .:/home/src/
-      -  ~/de_zoomcamp/02_orquestation/mage-zoomcamp/my-creds:/home/src/personal-gcp.json
+      - ~/de_zoomcamp/02_orquestation/mage-zoomcamp/my-creds:/home/src/personal-gcp.json
     restart: on-failure:5
   postgres:
     image: postgres:14
