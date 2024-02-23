@@ -1,7 +1,7 @@
 set -e
 
-SERVICE=$1 #"yellow"
-YEAR=$2 #2020
+SERVICE="fhv"
+YEAR=2019
 
 URL_PREFIX="https://d37ci6vzurychx.cloudfront.net/trip-data"
 
